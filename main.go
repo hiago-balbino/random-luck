@@ -55,9 +55,9 @@ func generateNumbers(numberOfGames int, numbersToGame int) map[int][]int {
 			}
 			numbers = append(numbers, number)
 		}
+		sort.Ints(numbers)
 		result[i] = numbers
 	}
-	sortResult(result)
 	return result
 }
 
@@ -76,12 +76,6 @@ func isAlreadyAdded(number int, numbers []int) bool {
 		}
 	}
 	return false
-}
-
-func sortResult(result map[int][]int) {
-	for _, value := range result {
-		sort.Ints(value)
-	}
 }
 
 func printOutput(result map[int][]int) {
