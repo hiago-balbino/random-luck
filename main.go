@@ -48,36 +48,46 @@ func generateNumbers(numberOfGames int, numbersToGame int) map[int][]int {
 	for i := minNumberToGame; i <= numberOfGames; i++ {
 		var numbers []int
 		for j := minNumberToGame; j <= numbersToGame; j++ {
-			numbers = append(numbers, generate())
+			number := generate()
+			if isAlreadyAdded(number, numbers) {
+				j--
+				continue
+			}
+			numbers = append(numbers, number)
 		}
 		result[i] = numbers
 	}
+	sortResult(result)
 	return result
 }
 
 func generate() int {
-	value := rand.Intn(maxNumberToGame)
-	if value < minNumberToGame {
+	number := rand.Intn(maxNumberToGame)
+	if number < minNumberToGame {
 		return generate()
 	}
-	return value
+	return number
+}
+
+func isAlreadyAdded(number int, numbers []int) bool {
+	for _, n := range numbers {
+		if n == number {
+			return true
+		}
+	}
+	return false
+}
+
+func sortResult(result map[int][]int) {
+	for _, value := range result {
+		sort.Ints(value)
+	}
 }
 
 func printOutput(result map[int][]int) {
-	keys := sortKeys(result)
-
-	for _, key := range keys {
-		fmt.Println("Numbers to game:", key)
-		fmt.Println(result[key])
+	for i := 1; i <= len(result); i++ {
+		fmt.Println("Numbers to game:", i)
+		fmt.Println(result[i])
 		fmt.Println("")
 	}
-}
-
-func sortKeys(result map[int][]int) []int {
-	var keys []int
-	for key := range result {
-		keys = append(keys, key)
-	}
-	sort.Ints(keys)
-	return keys
 }
