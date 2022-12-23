@@ -1,3 +1,3 @@
 module github.com/hiago-balbino/random-luck
 
-go 1.17
+go 1.19
