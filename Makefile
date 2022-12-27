@@ -1,6 +1,6 @@
 .PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis clean
 
-APP_NAME=random_luck_api
+APP_NAME=random_luck
 
 ## help: show this help.
 help:
