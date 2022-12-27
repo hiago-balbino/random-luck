@@ -1,4 +1,4 @@
-.PHONY: all help setup vet lint vulncheck fmt clean
+.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis clean
 
 APP_NAME=random_luck_api
 
@@ -27,6 +27,26 @@ vulncheck:
 ## fmt: run go formatter recursively on all files
 fmt:
 	gofmt -s -w .
+
+## tests: run all unit tests
+tests:
+	go test -race -coverprofile coverage.out ./... -short=true -count=1
+
+## cover: run the command tool cover to open coverage file as HTML
+cover: tests
+	go tool cover -html coverage.out
+
+## sonarqube-up: start sonarqube container
+sonarqube-up:
+	docker run -d --name sonarqube -p ${SONAR_PORT}:${SONAR_PORT} sonarqube
+
+## sonarqube-down: stop sonarqube container
+sonarqube-down:
+	docker rm sonarqube -f
+
+## sonarqube-analysis: run sonar scanner
+sonarqube-analysis: tests
+	${SONAR_BINARY} -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD}
 
 ## clean: run the go clean command and removes the application binary
 clean:
