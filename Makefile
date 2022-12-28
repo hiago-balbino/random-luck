@@ -1,8 +1,8 @@
-.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis clean
+.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis build clean
 
 APP_NAME=random_luck
 
-## help: show this help.
+## help: show this help
 help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
@@ -47,6 +47,10 @@ sonarqube-down:
 ## sonarqube-analysis: run sonar scanner
 sonarqube-analysis: tests
 	${SONAR_BINARY} -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD}
+
+## build: create an executable of the application
+build:
+	go build -o ${APP_NAME} .
 
 ## clean: run the go clean command and removes the application binary
 clean:

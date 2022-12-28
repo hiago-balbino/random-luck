@@ -13,6 +13,8 @@ var rootCmd = &cobra.Command{
 // Execute executes the root command.
 func Execute() error {
 	cobra.OnInitialize(configuration.InitConfigurations)
+	rootCmd.AddCommand(apiCmd)
+	rootCmd.AddCommand(webCmd)
 
 	return rootCmd.Execute()
 }
