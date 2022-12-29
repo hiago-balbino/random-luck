@@ -13,8 +13,8 @@ type GameRandomizeMock struct {
 }
 
 // Randomize is a mock function for randomizing luck numbers to create games.
-func (g *GameRandomizeMock) Randomize(ctx context.Context, amountOfGames, amountNumbersPerGame int) ([]domain.Game, error) {
-	args := g.Called(ctx, amountOfGames, amountNumbersPerGame)
+func (g *GameRandomizeMock) Randomize(ctx context.Context, amountOfGames, amountOfNumbersPerGame int) ([]domain.Game, error) {
+	args := g.Called(ctx, amountOfGames, amountOfNumbersPerGame)
 
 	return args.Get(0).([]domain.Game), args.Error(1)
 }
