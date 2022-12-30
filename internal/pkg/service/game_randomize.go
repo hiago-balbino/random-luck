@@ -25,8 +25,8 @@ var log = logger.GetLogger()
 // GameRandomize is a struct that implements GameRandomizer interface that handles functions to randomize data to create games.
 type GameRandomize struct{}
 
-// NewGameRandomize is a constructor for creating a new instance of GameRandomize.
-func NewGameRandomize() GameRandomize {
+// NewGameRandomizer is a constructor for creating a new instance of GameRandomize.
+func NewGameRandomizer() GameRandomize {
 	return GameRandomize{}
 }
 

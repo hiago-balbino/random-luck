@@ -22,8 +22,8 @@ func TestRandomize(t *testing.T) {
 				amountOfGames := 0
 				amountOfNumbersPerGame := 6
 
-				gameRandomize := NewGameRandomize()
-				games, err := gameRandomize.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer := NewGameRandomizer()
+				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, errors.ErrMinAmountOfGames.Error())
@@ -35,8 +35,8 @@ func TestRandomize(t *testing.T) {
 				amountOfGames := 1
 				amountOfNumbersPerGame := 2
 
-				gameRandomize := NewGameRandomize()
-				games, err := gameRandomize.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer := NewGameRandomizer()
+				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, errors.ErrMinAmountOfNumbersPerGame.Error())
@@ -48,8 +48,8 @@ func TestRandomize(t *testing.T) {
 				amountOfGames := 1
 				amountOfNumbersPerGame := 10
 
-				gameRandomize := NewGameRandomize()
-				games, err := gameRandomize.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer := NewGameRandomizer()
+				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, errors.ErrMaxAmountOfNumbersPerGame.Error())
@@ -61,8 +61,8 @@ func TestRandomize(t *testing.T) {
 				amountOfGames := 1
 				amountOfNumbersPerGame := 6
 
-				gameRandomize := NewGameRandomize()
-				games, err := gameRandomize.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer := NewGameRandomizer()
+				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.NoError(t, err)
 				assert.Equal(t, 1, len(games))
@@ -75,8 +75,8 @@ func TestRandomize(t *testing.T) {
 				amountOfGames := 5
 				amountOfNumbersPerGame := 9
 
-				gameRandomize := NewGameRandomize()
-				games, err := gameRandomize.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer := NewGameRandomizer()
+				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.NoError(t, err)
 				assert.Equal(t, 5, len(games))

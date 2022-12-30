@@ -1,4 +1,4 @@
-.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis build clean
+.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api clean
 
 APP_NAME=random_luck
 
@@ -51,6 +51,10 @@ sonarqube-analysis: tests
 ## build: create an executable of the application
 build:
 	go build -o ${APP_NAME} .
+	
+## run-api: build project and run the API using the built binary
+run-api: build
+	./${APP_NAME} api
 
 ## clean: run the go clean command and removes the application binary
 clean:

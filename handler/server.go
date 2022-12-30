@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/hiago-balbino/random-luck/configuration"
 	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
+	"github.com/hiago-balbino/random-luck/internal/pkg/service"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -22,6 +23,7 @@ type Server struct {
 // NewServer create a new instante of Server structure.
 func NewServer(serverType int) Server {
 	configuration.InitConfigurations()
+	randomizer := service.NewGameRandomizer()
 
 	if serverType == WEB {
 		return Server{handler: NewWebHandler()}
@@ -29,7 +31,7 @@ func NewServer(serverType int) Server {
 
 	return Server{
 		serverType: serverType,
-		handler:    NewAPIHandler(),
+		handler:    NewAPIHandler(randomizer),
 	}
 }
 
@@ -47,7 +49,6 @@ func (s Server) setupRoutes(templatePath string) *gin.Engine {
 
 	if s.serverType == WEB {
 		router.LoadHTMLGlob(templatePath)
-
 		router.GET("/index", func(_ *gin.Context) {})
 	}
 	router.GET("/process", s.handler.Process)
