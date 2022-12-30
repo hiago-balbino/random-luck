@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-random-luck
+random_luck
 
 # Test binary, built with `go test -c`
 *.test
