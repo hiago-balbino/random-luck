@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile_nginx
+    container_name: nginx
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile_base
+    container_name: random-luck-api
+    command:
+      - ./random_luck
+      - ${COMMAND}
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL}

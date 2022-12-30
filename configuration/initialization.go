@@ -6,4 +6,6 @@ import "github.com/spf13/viper"
 func InitConfigurations() {
 	viper.AutomaticEnv()
 	_ = viper.ReadInConfig()
+
+	viper.SetDefault("PORT", "8888")
 }

@@ -1,0 +1,18 @@
+#### Setup ####
+FROM golang:1.19-alpine as setup
+RUN apk add git make
+
+WORKDIR /app
+
+ENV Go111MODULE=on
+
+COPY go.mod .
+COPY go.sum .
+COPY Makefile .
+RUN make setup
+
+#### Builder ####
+FROM setup as builder
+
+COPY . /app
+RUN make build

@@ -1,4 +1,4 @@
-.PHONY: all help setup vet lint vulncheck fmt tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api clean
+.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api compose-ps compose-up compose-down clean
 
 APP_NAME=random_luck
 
@@ -12,9 +12,9 @@ setup:
 	go mod tidy
 	go mod verify
 
-## vet: run the command vet from Go
-vet:
-	go vet ./...
+## fmt: run go formatter recursively on all files
+fmt:
+	gofmt -s -w .
 
 ## lint: run all linters configured
 lint:
@@ -24,13 +24,12 @@ lint:
 vulncheck:
 	govulncheck ./...
 
-## fmt: run go formatter recursively on all files
-fmt:
-	gofmt -s -w .
-
 ## tests: run all unit tests
 tests:
 	go test -race -coverprofile coverage.out ./... -short=true -count=1
+
+## pipeline: run all necessary steps to go through the pipeline
+pipeline: setup fmt lint vulncheck tests
 
 ## cover: run the command tool cover to open coverage file as HTML
 cover: tests
@@ -55,6 +54,18 @@ build:
 ## run-api: build project and run the API using the built binary
 run-api: build
 	./${APP_NAME} api
+
+## compose-ps: list all containers running
+compose-ps:
+	docker-compose -f docker-compose.yml ps
+
+## compose-up: start the API
+compose-up:
+	docker-compose -f docker-compose.yml up -d
+
+## compose-down: stop the API
+compose-down:
+	docker-compose -f docker-compose.yml down
 
 ## clean: run the go clean command and removes the application binary
 clean:
