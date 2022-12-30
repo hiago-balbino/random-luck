@@ -1,4 +1,4 @@
-.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api compose-ps compose-up compose-down doc clean
+.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api run-web compose-ps compose-up compose-down doc clean
 
 APP_NAME=random_luck
 
@@ -54,6 +54,10 @@ build:
 ## run-api: build project and run the API using the built binary
 run-api: build
 	./${APP_NAME} api
+
+## run-web: build project and run the Web using the built binary
+run-web: build
+	./${APP_NAME} web
 
 ## compose-ps: list all containers running
 compose-ps:

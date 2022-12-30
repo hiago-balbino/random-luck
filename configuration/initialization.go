@@ -8,4 +8,5 @@ func InitConfigurations() {
 	_ = viper.ReadInConfig()
 
 	viper.SetDefault("PORT", "8888")
+	viper.SetDefault("LOG_LEVEL", "ERROR")
 }
