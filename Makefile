@@ -1,4 +1,4 @@
-.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api compose-ps compose-up compose-down clean
+.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api compose-ps compose-up compose-down doc clean
 
 APP_NAME=random_luck
 
@@ -71,5 +71,9 @@ compose-down:
 clean:
 	go clean
 	rm ${APP_NAME}
+
+## doc: run the project documentation using HTTP
+doc:
+	godoc -http=:6060
 
 all: help
