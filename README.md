@@ -6,9 +6,9 @@
 [![Tests](https://github.com/hiago-balbino/random-luck/actions/workflows/tests.yml/badge.svg?branch=main&event=push&logo=github&style=flat-square)](https://github.com/hiago-balbino/random-luck/actions/workflows/tests.yml)
 
 # 🍀 RANDOM LUCK
-This project was created for learning purposes and is a lucky random number generator for Mega Sena 
+This project was created for learning purposes and is a lucky random number generator for Mega Sena. 
 
-Some tools used do not represent the best choice, they were only used for learning purposes. For example the application can be run as an API where the return will be a JSON or it can be run as a Web where the `template package` was used
+Some tools used do not represent the best choice, they were only used for learning purposes. For example the application can be run as an API where the return will be a JSON or it can be run as a Web where the `template package` was used.
 
 ## 🧰 Dependencies
 * [Go](https://golang.google.cn/dl) 1.19+
