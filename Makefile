@@ -33,7 +33,7 @@ pipeline: setup fmt lint vulncheck tests
 
 ## cover: run the command tool cover to open coverage file as HTML
 cover: tests
-	go tool cover -html coverage.out
+	go tool cover -html=coverage.out -o coverage.html
 
 ## sonarqube-up: start sonarqube container
 sonarqube-up:
