@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/hiago-balbino/random-luck/configuration"
@@ -26,7 +27,10 @@ func NewServer(serverType int) Server {
 	randomizer := service.NewGameRandomizer()
 
 	if serverType == WEB {
-		return Server{handler: NewWebHandler()}
+		return Server{
+			serverType: serverType,
+			handler:    NewWebHandler(randomizer),
+		}
 	}
 
 	return Server{
@@ -49,7 +53,9 @@ func (s Server) setupRoutes(templatePath string) *gin.Engine {
 
 	if s.serverType == WEB {
 		router.LoadHTMLGlob(templatePath)
-		router.GET("/index", func(_ *gin.Context) {})
+		router.GET("/index", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "index.html", nil)
+		})
 	}
 	router.GET("/process", s.handler.Process)
 

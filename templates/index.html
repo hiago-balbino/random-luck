@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "header"}}
+
+<body>  
+	<form action="/process">
+		<div class="container">
+			<br>
+			<h2>Random Luck</h2>
+
+			<div class="col-md-auto">
+				<label for="amount_of_games" class="form-label">Amount of Games</label>
+				<input type="text" class="form-control" id="amount_of_games" name="amount_of_games">
+			</div>
+			<div class="col-md-auto">
+				<label for="amount_of_numbers_per_game" class="form-label">Amount of Numbers Per Game</label>
+				<input type="text" class="form-control" id="amount_of_numbers_per_game" name="amount_of_numbers_per_game">
+			</div>
+			<br>
+			<button type="submit" class="btn btn-outline-dark btn-lg">
+				<i class="bi bi-play-circle"> Process</i>
+			</button>
+		</div>
+	</form>
+</body>
+</html>

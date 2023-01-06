@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{{template "header"}}
+
+<body>
+    <div class="container">
+    {{template "back-button"}}
+
+        <div class="list-group">
+        {{range .games}}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">Game {{.GameID}}</li>
+                {{range .Numbers}}
+                    <li class="list-group-item">{{.}}</li>
+                {{end}}
+            </ul>
+        {{end}}
+        </div>
+
+        <br><h4>Good Luck 🍀</h4>
+    </div>
+</body>
+</html>
