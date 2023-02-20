@@ -11,7 +11,7 @@ This project was created for learning purposes and is a lucky random number gene
 Some tools used do not represent the best choice, they were only used for learning purposes. For example the application can be run as an API where the return will be a JSON or it can be run as a Web where the `template package` was used.
 
 ## 🧰 Dependencies
-* [Go](https://golang.google.cn/dl) 1.19+
+* [Go](https://golang.google.cn/dl) 1.20+
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Docker-compose](https://docs.docker.com/compose/install)
 * [Nginx](https://nginx.org)
