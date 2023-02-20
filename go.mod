@@ -1,6 +1,6 @@
 module github.com/hiago-balbino/random-luck
 
-go 1.19
+go 1.20
 
 require (
 	github.com/gavv/httpexpect/v2 v2.8.0
