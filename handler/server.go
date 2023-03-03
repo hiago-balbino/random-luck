@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/arl/statsviz"
 	"github.com/gin-gonic/gin"
 	"github.com/hiago-balbino/random-luck/configuration"
 	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
@@ -57,6 +58,14 @@ func (s Server) setupRoutes(templatePath string) *gin.Engine {
 			c.HTML(http.StatusOK, "index.html", nil)
 		})
 	}
+	router.GET("/metrics/*filepath", func(c *gin.Context) {
+		if c.Param("filepath") == "/ws" {
+			statsviz.Ws(c.Writer, c.Request)
+
+			return
+		}
+		statsviz.IndexAtRoot("/metrics").ServeHTTP(c.Writer, c.Request)
+	})
 	router.GET("/process", s.handler.Process)
 
 	return router

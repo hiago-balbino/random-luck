@@ -3,6 +3,7 @@ module github.com/hiago-balbino/random-luck
 go 1.20
 
 require (
+	github.com/arl/statsviz v0.5.1
 	github.com/gavv/httpexpect/v2 v2.8.0
 	github.com/gin-gonic/gin v1.8.2
 	github.com/spf13/cobra v1.6.1

@@ -31,6 +31,7 @@ Some tools used do not represent the best choice, they were only used for learni
 * [Zap logger](https://go.uber.org/zap)
 * [HTTP expect](https://github.com/gavv/httpexpect)
     * Used to API test
+* [Statsviz](https://github.com/arl/statsviz)
 * [Sonarqube](https://www.sonarqube.org)
 
 ## 🛠️ Useful commands
@@ -93,6 +94,21 @@ If you prefer to run outside of docker, just run `make run-api`(accessible at `h
 
 ## 📜 Running Internal Documentation
 You can do this by running the `make doc` command and going to the address `http://localhost:6060`.
+
+## 📊 Runtime metrics
+You can view real-time Go program runtime metrics data in your browser at `http://localhost/metrics` or `http://localhost:8888/metrics`(when running locally).
+* Heap (global)
+* Heap (details)
+* Live Objects in Heap
+* Live Bytes in Heap
+* MSpan/MCache
+* Goroutines
+* Size Classes
+* Stop-the-world Pause Latencies
+* Time Goroutines Spend in 'Runnable'
+* Starting Size of Goroutines Stacks
+* Goroutine Scheduling Events
+* CGO Calls
 
 ## 🎯 How to run sonarqube locally
 The project is set up to run `sonarqube` locally and has three commands in the Makefile. The `sonarqube` will be downloaded by Docker, but you need to [install sonar-scanner following your operating system](https://docs.sonarqube.org/latest/analyzing-source-code/scanners/sonarscanner).
