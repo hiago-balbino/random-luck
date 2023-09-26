@@ -53,3 +53,8 @@ func getLogLevel() zapcore.Level {
 		return zap.ErrorLevel
 	}
 }
+
+// FieldError is a function to return a zapcore.Field from an error.
+func FieldError(err error) zapcore.Field {
+	return zapcore.Field{Type: zapcore.StringType, String: err.Error()}
+}

@@ -1,4 +1,4 @@
-package service
+package game
 
 import (
 	"context"
@@ -6,11 +6,15 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/hiago-balbino/random-luck/internal/core/domain"
-	"github.com/hiago-balbino/random-luck/internal/core/errors"
+	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
 	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
-	"go.uber.org/zap/zapcore"
 )
+
+// GameRandomizer is an interface that handles functions to randomize data to create games.
+type GameRandomizer interface {
+	// Randomize is an function for randomizing luck numbers to create games.
+	Randomize(ctx context.Context, amountOfGames, amountOfNumbersPerGame int) ([]Game, error)
+}
 
 const (
 	minAmountOfGamesAllowed   = 1
@@ -31,14 +35,14 @@ func NewGameRandomizer() GameRandomize {
 }
 
 // Randomize is an function for randomizing luck numbers to create games.
-func (g GameRandomize) Randomize(_ context.Context, amountOfGames, amountOfNumbersPerGame int) ([]domain.Game, error) {
+func (g GameRandomize) Randomize(_ context.Context, amountOfGames, amountOfNumbersPerGame int) ([]Game, error) {
 	if err := g.validateParameters(amountOfGames, amountOfNumbersPerGame); err != nil {
-		log.Error("validate parameters", zapcore.Field{Type: zapcore.StringType, String: err.Error()})
+		log.Error("validate parameters", logger.FieldError(err))
 
 		return nil, err
 	}
 
-	games := make([]domain.Game, 0)
+	games := make([]Game, 0)
 	for i := minAmountOfGamesAllowed; i <= amountOfGames; i++ {
 		numbers := make([]int, 0)
 
@@ -48,7 +52,7 @@ func (g GameRandomize) Randomize(_ context.Context, amountOfGames, amountOfNumbe
 		}
 
 		sort.Ints(numbers)
-		games = append(games, domain.Game{ID: i, Numbers: numbers})
+		games = append(games, Game{ID: i, Numbers: numbers})
 	}
 
 	return games, nil
@@ -58,11 +62,11 @@ func (g GameRandomize) Randomize(_ context.Context, amountOfGames, amountOfNumbe
 func (g GameRandomize) validateParameters(amountOfGames, amountOfNumbersPerGame int) error {
 	switch {
 	case amountOfGames < minAmountOfGamesAllowed:
-		return errors.ErrMinAmountOfGames
+		return apperrors.ErrMinAmountOfGames
 	case amountOfNumbersPerGame < minAmountOfNumbersPerGame:
-		return errors.ErrMinAmountOfNumbersPerGame
+		return apperrors.ErrMinAmountOfNumbersPerGame
 	case amountOfNumbersPerGame > maxAmountOfNumbersPerGame:
-		return errors.ErrMaxAmountOfNumbersPerGame
+		return apperrors.ErrMaxAmountOfNumbersPerGame
 	default:
 		return nil
 	}
@@ -72,7 +76,7 @@ func (g GameRandomize) validateParameters(amountOfGames, amountOfNumbersPerGame 
 func (g GameRandomize) generateNewNumber(numbersAlreadyGenerated []int) int {
 	randomNumber, err := rand.Int(rand.Reader, big.NewInt(maxNumberPerGame-minNumberPerGame))
 	if err != nil {
-		log.Error("generate new randomNumber", zapcore.Field{Type: zapcore.StringType, String: err.Error()})
+		log.Error("generate new randomNumber", logger.FieldError(err))
 
 		return g.generateNewNumber(numbersAlreadyGenerated)
 	}

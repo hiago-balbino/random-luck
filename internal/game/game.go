@@ -1,4 +1,4 @@
-package domain
+package game
 
 // Game is a struct to represent the randomly created game model.
 type Game struct {

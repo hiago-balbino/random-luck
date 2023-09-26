@@ -1,11 +1,10 @@
-package service
+package game
 
 import (
 	"context"
 	"testing"
 
-	"github.com/hiago-balbino/random-luck/internal/core/domain"
-	"github.com/hiago-balbino/random-luck/internal/core/errors"
+	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -26,7 +25,7 @@ func TestRandomize(t *testing.T) {
 				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
-				assert.EqualError(t, err, errors.ErrMinAmountOfGames.Error())
+				assert.EqualError(t, err, apperrors.ErrMinAmountOfGames.Error())
 			},
 		},
 		{
@@ -39,7 +38,7 @@ func TestRandomize(t *testing.T) {
 				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
-				assert.EqualError(t, err, errors.ErrMinAmountOfNumbersPerGame.Error())
+				assert.EqualError(t, err, apperrors.ErrMinAmountOfNumbersPerGame.Error())
 			},
 		},
 		{
@@ -52,7 +51,7 @@ func TestRandomize(t *testing.T) {
 				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
-				assert.EqualError(t, err, errors.ErrMaxAmountOfNumbersPerGame.Error())
+				assert.EqualError(t, err, apperrors.ErrMaxAmountOfNumbersPerGame.Error())
 			},
 		},
 		{
@@ -90,7 +89,7 @@ func TestRandomize(t *testing.T) {
 	}
 }
 
-func assertGameNumbers(t *testing.T, games []domain.Game) {
+func assertGameNumbers(t *testing.T, games []Game) {
 	for _, game := range games {
 		for _, number := range game.Numbers {
 			if number < minNumberPerGame || number > maxNumberPerGame {
