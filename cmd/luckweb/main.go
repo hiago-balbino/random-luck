@@ -7,6 +7,6 @@ import (
 
 func main() {
 	config.InitConfigurations()
-	server := handler.NewServer(handler.API)
+	server := handler.NewServer()
 	server.Start()
 }

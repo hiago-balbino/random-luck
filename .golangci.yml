@@ -9,7 +9,6 @@ linters:
     - contextcheck
     - cyclop
     - decorder
-    - depguard
     - dogsled
     - dupl
     - durationcheck
