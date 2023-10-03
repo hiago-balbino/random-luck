@@ -4,21 +4,20 @@ services:
 
   nginx:
     build:
-      context: .
-      dockerfile: Dockerfile_nginx
+      context: ../
+      dockerfile: build/Dockerfile_nginx
     container_name: nginx
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
     depends_on:
-      - api
+      - webapp
 
-  api:
+  webapp:
     build:
-      context: .
-      dockerfile: Dockerfile_base
-    container_name: random-luck-api
+      context: ../
+      dockerfile: build/Dockerfile_base
+    container_name: random-luck-webapp
     command:
       - ./random_luck
-      - ${COMMAND}
     environment:
       LOG_LEVEL: ${LOG_LEVEL}

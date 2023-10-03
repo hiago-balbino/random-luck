@@ -1,5 +1,5 @@
 #### Setup ####
-FROM golang:1.19-alpine as setup
+FROM golang:1.21-alpine as setup
 RUN apk add git make
 
 WORKDIR /app
@@ -15,4 +15,4 @@ RUN make setup
 FROM setup as builder
 
 COPY . /app
-RUN make build
+RUN make build-web

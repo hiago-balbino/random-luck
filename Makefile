@@ -1,4 +1,4 @@
-.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build run-api run-web compose-ps compose-up compose-down doc clean
+.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build-web run-web compose-ps compose-up compose-down doc clean
 
 APP_NAME=random_luck
 
@@ -47,29 +47,25 @@ sonarqube-down:
 sonarqube-analysis: tests
 	${SONAR_BINARY} -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD}
 
-## build: create an executable of the application
-build:
-	go build -o ${APP_NAME} .
+## build-web: create an executable of the web application
+build-web:
+	go build -o ${APP_NAME} cmd/luckweb/main.go
 	
-## run-api: build project and run the API using the built binary
-run-api: build
-	./${APP_NAME} api
-
 ## run-web: build project and run the Web using the built binary
-run-web: build
-	./${APP_NAME} web
+run-web: build-web
+	./${APP_NAME}
 
 ## compose-ps: list all containers running
 compose-ps:
-	docker-compose -f docker-compose.yml ps
+	docker-compose -f build/docker-compose.yml ps
 
-## compose-up: start the API
+## compose-up: start the APP
 compose-up:
-	docker-compose -f docker-compose.yml up -d
+	docker-compose -f build/docker-compose.yml up -d
 
-## compose-down: stop the API
+## compose-down: stop the APP
 compose-down:
-	docker-compose -f docker-compose.yml down
+	docker-compose -f build/docker-compose.yml down
 
 ## clean: run the go clean command and removes the application binary
 clean:
