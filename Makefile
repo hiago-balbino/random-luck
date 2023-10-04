@@ -1,4 +1,4 @@
-.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build-web run-web compose-ps compose-up compose-down doc clean
+.PHONY: all help setup fmt lint vulncheck tests cover sonarqube-up sonarqube-down sonarqube-analysis build-ctl build-web run-ctl run-web compose-ps compose-up compose-down doc clean
 
 APP_NAME=random_luck
 
@@ -47,10 +47,18 @@ sonarqube-down:
 sonarqube-analysis: tests
 	${SONAR_BINARY} -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PASSWORD}
 
+## build-ctl: create an executable of the command tool
+build-ctl:
+	go build -o ${APP_NAME} cmd/luckctl/main.go
+
 ## build-web: create an executable of the web application
 build-web:
 	go build -o ${APP_NAME} cmd/luckweb/main.go
 	
+## run-ctl: build project and run the command tool using the built binary
+run-ctl: build-ctl
+	./${APP_NAME} --games=${GAMES} --numbers=${NUMBERS}
+
 ## run-web: build project and run the Web using the built binary
 run-web: build-web
 	./${APP_NAME}
