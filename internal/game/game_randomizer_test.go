@@ -1,7 +1,6 @@
 package game
 
 import (
-	"context"
 	"testing"
 
 	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
@@ -9,8 +8,6 @@ import (
 )
 
 func TestRandomize(t *testing.T) {
-	ctx := context.Background()
-
 	testCases := []struct {
 		name string
 		run  func(*testing.T)
@@ -22,7 +19,7 @@ func TestRandomize(t *testing.T) {
 				amountOfNumbersPerGame := 6
 
 				randomizer := NewGameRandomizer()
-				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				games, err := randomizer.Randomize(amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, apperrors.ErrMinAmountOfGames.Error())
@@ -35,7 +32,7 @@ func TestRandomize(t *testing.T) {
 				amountOfNumbersPerGame := 2
 
 				randomizer := NewGameRandomizer()
-				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				games, err := randomizer.Randomize(amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, apperrors.ErrMinAmountOfNumbersPerGame.Error())
@@ -48,7 +45,7 @@ func TestRandomize(t *testing.T) {
 				amountOfNumbersPerGame := 10
 
 				randomizer := NewGameRandomizer()
-				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				games, err := randomizer.Randomize(amountOfGames, amountOfNumbersPerGame)
 
 				assert.Empty(t, games)
 				assert.EqualError(t, err, apperrors.ErrMaxAmountOfNumbersPerGame.Error())
@@ -61,7 +58,7 @@ func TestRandomize(t *testing.T) {
 				amountOfNumbersPerGame := 6
 
 				randomizer := NewGameRandomizer()
-				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				games, err := randomizer.Randomize(amountOfGames, amountOfNumbersPerGame)
 
 				assert.NoError(t, err)
 				assert.Equal(t, 1, len(games))
@@ -75,7 +72,7 @@ func TestRandomize(t *testing.T) {
 				amountOfNumbersPerGame := 9
 
 				randomizer := NewGameRandomizer()
-				games, err := randomizer.Randomize(ctx, amountOfGames, amountOfNumbersPerGame)
+				games, err := randomizer.Randomize(amountOfGames, amountOfNumbersPerGame)
 
 				assert.NoError(t, err)
 				assert.Equal(t, 5, len(games))

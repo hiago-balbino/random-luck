@@ -1,8 +1,6 @@
 package mocks
 
 import (
-	"context"
-
 	"github.com/hiago-balbino/random-luck/internal/game"
 	"github.com/stretchr/testify/mock"
 )
@@ -13,7 +11,8 @@ type GameRandomizerMock struct {
 }
 
 // Randomize is an function for randomizing luck numbers to create games.
-func (m *GameRandomizerMock) Randomize(ctx context.Context, amountOfGames, amountOfNumbersPerGame int) ([]game.Game, error) {
-	args := m.Called(ctx, amountOfGames, amountOfNumbersPerGame)
+func (m *GameRandomizerMock) Randomize(amountOfGames, amountOfNumbersPerGame int) ([]game.Game, error) {
+	args := m.Called(amountOfGames, amountOfNumbersPerGame)
+
 	return args.Get(0).([]game.Game), args.Error(1)
 }

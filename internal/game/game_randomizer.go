@@ -1,7 +1,6 @@
 package game
 
 import (
-	"context"
 	"crypto/rand"
 	"math/big"
 	"sort"
@@ -13,7 +12,7 @@ import (
 // GameRandomizer is an interface that handles functions to randomize data to create games.
 type GameRandomizer interface {
 	// Randomize is an function for randomizing luck numbers to create games.
-	Randomize(ctx context.Context, amountOfGames, amountOfNumbersPerGame int) ([]Game, error)
+	Randomize(amountOfGames, amountOfNumbersPerGame int) ([]Game, error)
 }
 
 const (
@@ -35,7 +34,7 @@ func NewGameRandomizer() GameRandomize {
 }
 
 // Randomize is an function for randomizing luck numbers to create games.
-func (g GameRandomize) Randomize(_ context.Context, amountOfGames, amountOfNumbersPerGame int) ([]Game, error) {
+func (g GameRandomize) Randomize(amountOfGames, amountOfNumbersPerGame int) ([]Game, error) {
 	if err := g.validateParameters(amountOfGames, amountOfNumbersPerGame); err != nil {
 		log.Error("validate parameters", logger.FieldError(err))
 

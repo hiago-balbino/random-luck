@@ -1,7 +1,6 @@
 package ctl
 
 import (
-	"context"
 	"testing"
 
 	"github.com/hiago-balbino/random-luck/internal/game"
@@ -10,8 +9,6 @@ import (
 )
 
 func TestProcessRandomLuckNumbers(t *testing.T) {
-	ctx := context.Background()
-
 	testCases := []struct {
 		name string
 		run  func(*testing.T)
@@ -23,12 +20,12 @@ func TestProcessRandomLuckNumbers(t *testing.T) {
 				amountOfNumbersPerGame := 6
 
 				randomizer := new(mocks.GameRandomizerMock)
-				randomizer.On("Randomize", ctx, amountOfGames, amountOfNumbersPerGame).Return([]game.Game{}, apperrors.ErrMinAmountOfGames)
+				randomizer.On("Randomize", amountOfGames, amountOfNumbersPerGame).Return([]game.Game{}, apperrors.ErrMinAmountOfGames)
 
 				ProcessRandomLuckNumbers(randomizer, amountOfGames, amountOfNumbersPerGame)
 
 				randomizer.AssertExpectations(t)
-				randomizer.AssertCalled(t, "Randomize", ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer.AssertCalled(t, "Randomize", amountOfGames, amountOfNumbersPerGame)
 			},
 		},
 		{
@@ -38,7 +35,7 @@ func TestProcessRandomLuckNumbers(t *testing.T) {
 				amountOfNumbersPerGame := 6
 
 				randomizer := new(mocks.GameRandomizerMock)
-				randomizer.On("Randomize", ctx, amountOfGames, amountOfNumbersPerGame).Return([]game.Game{
+				randomizer.On("Randomize", amountOfGames, amountOfNumbersPerGame).Return([]game.Game{
 					{ID: 1, Numbers: []int{1, 2, 3, 4, 5, 6}},
 					{ID: 2, Numbers: []int{1, 2, 3, 4, 5, 6}},
 				}, nil)
@@ -46,7 +43,7 @@ func TestProcessRandomLuckNumbers(t *testing.T) {
 				ProcessRandomLuckNumbers(randomizer, amountOfGames, amountOfNumbersPerGame)
 
 				randomizer.AssertExpectations(t)
-				randomizer.AssertCalled(t, "Randomize", ctx, amountOfGames, amountOfNumbersPerGame)
+				randomizer.AssertCalled(t, "Randomize", amountOfGames, amountOfNumbersPerGame)
 			},
 		},
 	}

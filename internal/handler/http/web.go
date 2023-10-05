@@ -30,7 +30,7 @@ func (w web) Process(c *gin.Context) {
 		return
 	}
 
-	games, err := w.randomizer.Randomize(c.Request.Context(), int(request.AmountOfGames), int(request.AmountOfNumbersPerGame))
+	games, err := w.randomizer.Randomize(int(request.AmountOfGames), int(request.AmountOfNumbersPerGame))
 	if err != nil {
 		if errors.Is(err, apperrors.ErrBase) {
 			c.HTML(http.StatusBadRequest, "error.html", gin.H{"message": err.Error()})
