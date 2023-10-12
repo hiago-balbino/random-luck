@@ -69,9 +69,7 @@ You can install the application using `go install`.
 go install github.com/hiago-balbino/random-luck/cmd/luckctl@latest
 ```
 
-Then you can run the application using `luckctl`. Note that if you want to run anywhere you need to export the environment variables.
-```
-luckctl
+Then you can run the application using `luckctl`. Note that if you want to run anywhere you need to export the `$GOPATH/bin/luckctl` to your `$PATH` environment variables.
 ```
 luckctl --games=2 --numbers=6
 ```
@@ -86,17 +84,11 @@ To run the project locally you need to export some environment variables and thi
 ```
 NGINX_PORT='80'
 LOG_LEVEL='ERROR'
-
-SONAR_PORT='9000'
-SONAR_HOST='http://localhost:9000'
-SONAR_LOGIN='admin'
-SONAR_PASSWORD='admin'
-SONAR_BINARY='sonar-scanner'
 ```
 
 After exporting the environment variables, you can run the `make compose-up` command and the application will run on Docker.
 
-* When running as Web the application will be accessible at `http://localhost/index` and the parameters need to be filled in and you will do this by following the HTML form:
+* The application will be accessible at `http://localhost/index` and the parameters need to be filled in and you will do this by following the HTML form:
     * amount_of_games (must be greater than zero)
     * amount_of_numbers_per_game (must be greater than or equal to six and less than or equal to nine)
 
