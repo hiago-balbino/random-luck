@@ -8,7 +8,7 @@
 # 🍀 RANDOM LUCK
 This project was created for learning purposes and is a lucky random number generator for Mega Sena. 
 
-Some tools used do not represent the best choice, they were only used for learning purposes. For example the application can be run as an API where the return will be a JSON or it can be run as a Web where the `template package` was used.
+Some tools used do not represent the best choice, they were only used for learning purposes. For example the application can be run as a Command Line or it can be run as a Web where the `template package` was used.
 
 ## 🧰 Dependencies
 * [Go](https://golang.google.cn/dl) 1.20+
@@ -23,14 +23,12 @@ Some tools used do not represent the best choice, they were only used for learni
 * [Govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck)
 * [Viper](https://github.com/spf13/viper)
     * Configuration solution
-* [Cobra](https://github.com/spf13/cobra)
-    * Library for creating CLI applications
 * [Gin web framework](https://github.com/gin-gonic/gin)
 * [Testify](https://github.com/stretchr/testify)
     * Tools for testifying
 * [Zap logger](https://go.uber.org/zap)
 * [HTTP expect](https://github.com/gavv/httpexpect)
-    * Used to API test
+    * Used for REST API testing
 * [Statsviz](https://github.com/arl/statsviz)
 * [Sonarqube](https://www.sonarqube.org)
 
@@ -51,17 +49,39 @@ cover: run the command tool cover to open coverage file as HTML
 sonarqube-up: start sonarqube container
 sonarqube-down: stop sonarqube container
 sonarqube-analysis: run sonar scanner
-build: create an executable of the application
-run-api: build project and run the API using the built binary
+build-ctl: create an executable of the command tool
+build-web: create an executable of the web application
+run-ctl: build project and run the command tool using the built binary
 run-web: build project and run the Web using the built binary
 compose-ps: list all containers running
-compose-up: start the API
-compose-down: stop the API
+compose-up: start the APP
+compose-down: stop the APP
 clean: run the go clean command and removes the application binary
 doc: run the project documentation using HTTP
 ```
 
 ## ⚙️ Running the Application
+
+### Command Line
+
+You can install the application using `go install`.
+```
+go install github.com/hiago-balbino/random-luck/cmd/luckctl@latest
+```
+
+Then you can run the application using `luckctl`. Note that if you want to run anywhere you need to export the environment variables.
+```
+luckctl
+```
+luckctl --games=2 --numbers=6
+```
+
+If you prefer can just run `make run-ctl`.
+```
+make run-ctl games=2 numbers=6
+```
+
+### Web
 To run the project locally you need to export some environment variables and this can be done using `direnv`. You can export the variables below.
 ```
 NGINX_PORT='80'
@@ -71,32 +91,25 @@ SONAR_PORT='9000'
 SONAR_HOST='http://localhost:9000'
 SONAR_LOGIN='admin'
 SONAR_PASSWORD='admin'
-SONAR_BINARY='sonar-scanner.bat'
+SONAR_BINARY='sonar-scanner'
 ```
-
-If you want to run the application as an `API`, you need to export the environment variable `COMMAND='api'`, but if you want to run it as a `Web`, you need to export it as `COMMAND='web'`. You can do this using `direnv`.
 
 After exporting the environment variables, you can run the `make compose-up` command and the application will run on Docker.
 
-* When running as an API, the application will be accessible at `http://localhost/process` and needs to fill in two parameters:
+* When running as Web the application will be accessible at `http://localhost/index` and the parameters need to be filled in and you will do this by following the HTML form:
     * amount_of_games (must be greater than zero)
     * amount_of_numbers_per_game (must be greater than or equal to six and less than or equal to nine)
-    ```curl
-    curl --location --request GET 'http://localhost/process?amount_of_games=1&amount_of_numbers_per_game=6'
-    ```
 
-* When running as Web the application will be accessible at `http://localhost/index` and the same parameters as above need to be filled in, but you will do this by following the HTML form.
-
-If you prefer to run outside of docker, just run `make run-api`(accessible at `http://localhost:8888/process`) or `make run-web` (accessible at `http://localhost:8888/index`).
+If you prefer to run outside of docker, just run `make run-web` (accessible at `http://localhost:8888/index`).
 
 ## 🪲 Debugging
-* If you want to debug the application, in your IDE you need to set the command to `api` or `web` as the application is using [cobra library](https://github.com/spf13/cobra).
+* If you want to debug the application, in your IDE you need to run the main file inside the `cmd/luckweb` or `cmd/luckctl` directory.
 
 ## 📜 Running Internal Documentation
 You can do this by running the `make doc` command and going to the address `http://localhost:6060`.
 
 ## 📊 Runtime metrics
-You can view real-time Go program runtime metrics data in your browser at `http://localhost/metrics` or `http://localhost:8888/metrics`(when running locally).
+In the Web application you can view real-time Go program runtime metrics data in your browser at `http://localhost/metrics` or `http://localhost:8888/metrics`(when running locally).
 * Heap (global)
 * Heap (details)
 * Live Objects in Heap

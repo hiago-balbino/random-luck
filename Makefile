@@ -57,7 +57,7 @@ build-web:
 	
 ## run-ctl: build project and run the command tool using the built binary
 run-ctl: build-ctl
-	./${APP_NAME} --games=${GAMES} --numbers=${NUMBERS}
+	./${APP_NAME} --games=${games} --numbers=${numbers}
 
 ## run-web: build project and run the Web using the built binary
 run-web: build-web
