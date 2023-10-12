@@ -67,11 +67,11 @@ run-web: build-web
 compose-ps:
 	docker-compose -f build/docker-compose.yml ps
 
-## compose-up: start the APP
+## compose-up: start the app with docker
 compose-up:
 	docker-compose -f build/docker-compose.yml up -d
 
-## compose-down: stop the APP
+## compose-down: stop the app with docker
 compose-down:
 	docker-compose -f build/docker-compose.yml down
 

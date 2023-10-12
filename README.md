@@ -54,8 +54,8 @@ build-web: create an executable of the web application
 run-ctl: build project and run the command tool using the built binary
 run-web: build project and run the Web using the built binary
 compose-ps: list all containers running
-compose-up: start the APP
-compose-down: stop the APP
+compose-up: start the app with docker
+compose-down: stop the app with docker
 clean: run the go clean command and removes the application binary
 doc: run the project documentation using HTTP
 ```
