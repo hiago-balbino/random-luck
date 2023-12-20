@@ -71,7 +71,7 @@ doc: run the project documentation using HTTP
 You can install the application using `go install`.
 
 ```
-go install github.com/hiago-balbino/random-luck/cmd/luckctl@latest
+go install github.com/hiago-balbino/random-luck/v2/cmd/luckctl@latest
 ```
 
 Then you can run the application using `luckctl`. Note that if you want to run anywhere you need to export the `$GOPATH/bin/luckctl` to your `$PATH` environment variables.
