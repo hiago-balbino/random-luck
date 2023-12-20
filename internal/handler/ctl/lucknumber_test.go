@@ -3,9 +3,9 @@ package ctl
 import (
 	"testing"
 
-	"github.com/hiago-balbino/random-luck/internal/game"
-	"github.com/hiago-balbino/random-luck/internal/game/mocks"
-	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/game/mocks"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/apperrors"
 )
 
 func TestProcessRandomLuckNumbers(t *testing.T) {

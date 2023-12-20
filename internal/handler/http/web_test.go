@@ -8,8 +8,8 @@ import (
 
 	"github.com/gavv/httpexpect/v2"
 	"github.com/gin-gonic/gin"
-	"github.com/hiago-balbino/random-luck/internal/game"
-	"github.com/hiago-balbino/random-luck/internal/game/mocks"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/game/mocks"
 )
 
 func TestProcess(t *testing.T) {

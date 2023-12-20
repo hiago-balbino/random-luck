@@ -3,7 +3,7 @@ package game
 import (
 	"testing"
 
-	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/apperrors"
 	"github.com/stretchr/testify/assert"
 )
 

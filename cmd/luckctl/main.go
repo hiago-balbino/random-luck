@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 
-	"github.com/hiago-balbino/random-luck/internal/game"
-	"github.com/hiago-balbino/random-luck/internal/handler/ctl"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/handler/ctl"
 )
 
 func main() {

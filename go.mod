@@ -1,4 +1,4 @@
-module github.com/hiago-balbino/random-luck
+module github.com/hiago-balbino/random-luck/v2
 
 go 1.21
 

@@ -6,9 +6,9 @@ import (
 
 	"github.com/arl/statsviz"
 	"github.com/gin-gonic/gin"
-	"github.com/hiago-balbino/random-luck/config"
-	"github.com/hiago-balbino/random-luck/internal/game"
-	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
+	"github.com/hiago-balbino/random-luck/v2/config"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/logger"
 	"github.com/spf13/viper"
 )
 

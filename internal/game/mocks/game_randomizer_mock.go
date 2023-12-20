@@ -1,7 +1,7 @@
 package mocks
 
 import (
-	"github.com/hiago-balbino/random-luck/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
 	"github.com/stretchr/testify/mock"
 )
 

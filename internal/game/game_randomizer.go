@@ -5,8 +5,8 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
-	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/apperrors"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/logger"
 )
 
 // GameRandomizer is an interface that handles functions to randomize data to create games.

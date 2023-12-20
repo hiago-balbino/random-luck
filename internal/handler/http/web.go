@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/hiago-balbino/random-luck/internal/game"
-	"github.com/hiago-balbino/random-luck/internal/pkg/apperrors"
-	"github.com/hiago-balbino/random-luck/internal/pkg/logger"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/apperrors"
+	"github.com/hiago-balbino/random-luck/v2/internal/pkg/logger"
 )
 
 // web is a struct that implements the Handler interface.

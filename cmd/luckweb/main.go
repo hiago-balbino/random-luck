@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/hiago-balbino/random-luck/config"
-	handler "github.com/hiago-balbino/random-luck/internal/handler/http"
+	"github.com/hiago-balbino/random-luck/v2/config"
+	handler "github.com/hiago-balbino/random-luck/v2/internal/handler/http"
 )
 
 func main() {

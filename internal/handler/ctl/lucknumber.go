@@ -2,7 +2,7 @@ package ctl
 
 import (
 	"github.com/fatih/color"
-	"github.com/hiago-balbino/random-luck/internal/game"
+	"github.com/hiago-balbino/random-luck/v2/internal/game"
 	"github.com/rodaine/table"
 )
 
