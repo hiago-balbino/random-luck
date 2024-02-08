@@ -41,29 +41,6 @@ You can run the command below to see all the useful commands available and your 
 make help
 ```
 
-```
-help: show this help
-setup: run the command mod download and tidy from Go
-fmt: run go formatter recursively on all files
-lint: run all linters configured
-vulncheck: run all vulnerability checks
-tests: run all unit tests
-pipeline: run all necessary steps to go through the pipeline
-cover: run the command tool cover to open coverage file as HTML
-sonarqube-up: start sonarqube container
-sonarqube-down: stop sonarqube container
-sonarqube-analysis: run sonar scanner
-build-ctl: create an executable of the command tool
-build-web: create an executable of the web application
-run-ctl: build project and run the command tool using the built binary
-run-web: build project and run the Web using the built binary
-compose-ps: list all containers running
-compose-up: start the app with docker
-compose-down: stop the app with docker
-clean: run the go clean command and removes the application binary
-doc: run the project documentation using HTTP
-```
-
 ## ⚙️ Running the Application
 
 ### Command Line

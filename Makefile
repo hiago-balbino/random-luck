@@ -65,15 +65,15 @@ run-web: build-web
 
 ## compose-ps: list all containers running
 compose-ps:
-	docker-compose -f build/docker-compose.yml ps
+	docker compose -f build/docker-compose.yml ps
 
 ## compose-up: start the app with docker
 compose-up:
-	docker-compose -f build/docker-compose.yml up -d
+	docker compose -f build/docker-compose.yml up -d
 
 ## compose-down: stop the app with docker
 compose-down:
-	docker-compose -f build/docker-compose.yml down
+	docker compose -f build/docker-compose.yml down
 
 ## clean: run the go clean command and removes the application binary
 clean:

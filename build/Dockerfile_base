@@ -1,5 +1,5 @@
 #### Setup ####
-FROM golang:1.21-alpine as setup
+FROM golang:1.22-alpine as setup
 RUN apk add git make
 
 WORKDIR /app

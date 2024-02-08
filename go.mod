@@ -1,6 +1,6 @@
 module github.com/hiago-balbino/random-luck/v2
 
-go 1.21
+go 1.22
 
 require (
 	github.com/arl/statsviz v0.5.1
